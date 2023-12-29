@@ -1,0 +1,140 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-12-29T09:39:37.007Z",
+    "end": "2023-12-29T09:40:35.512Z",
+    "duration": 58505,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "092ed541-de20-4a52-ab6b-f4fba4b85b05",
+      "title": "",
+      "fullFile": "cypress/e2e/Tests/StoryBlokAsset/Asset.cy.js",
+      "file": "cypress/e2e/Tests/StoryBlokAsset/Asset.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "76d53872-9072-4581-ab7c-ad252d84e9ac",
+          "title": "US01 | StoryBlok | Asset Feature Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "US01 # | TC01: Check that the user can upload an Asset when clicking the \"Upload files\" button",
+              "fullTitle": "US01 | StoryBlok | Asset Feature Tests US01 # | TC01: Check that the user can upload an Asset when clicking the \"Upload files\" button",
+              "timedOut": null,
+              "duration": 17518,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "currentAssetName = `picture-${Date.now()}`;\n// Start the upload process for a new asset\n_StoryBlokAsset.asset.uploadFile('background.jpg');\n// Ensure the upload modal is visible as part of the upload process\n_StoryBlokAsset.asset.get.uploadModal().should('be.visible');\n// Enter the unique asset name and initiate the upload\n_StoryBlokAsset.asset.typeAssetName(currentAssetName);\n_StoryBlokAsset.asset.clickUploadAsset();\n// Check that the upload has started\n_StoryBlokAsset.asset.get.uploadingImageProgressBar().should('be.visible');\n// Assertion to confirm that the image's src attribute contains the asset name, and the asset is visible, indicating successful upload\ncy.get('.assets-list-item-preview__image > img', {\n  timeout: 20000\n}).should('have.attr', 'src').and('include', currentAssetName);\n_StoryBlokAsset.asset.get.assetContainer().should('be.visible');",
+              "err": {},
+              "uuid": "fc34d55a-33de-4666-aa80-aa88f116bee3",
+              "parentUUID": "76d53872-9072-4581-ab7c-ad252d84e9ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "US01 # | TC04: Check that the user can set an asset as private",
+              "fullTitle": "US01 | StoryBlok | Asset Feature Tests US01 # | TC04: Check that the user can set an asset as private",
+              "timedOut": null,
+              "duration": 16614,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "currentAssetName = `picture-${Date.now()}`;\n_StoryBlokAsset.asset.uploadFile('background.jpg');\n_StoryBlokAsset.asset.typeAssetName(currentAssetName);\n//Toggle the button in order to set the asset as private\n_StoryBlokAsset.asset.get.toggleButton().click();\n_StoryBlokAsset.asset.clickUploadAsset();\n//Assertions to verify the asset is now private\ncy.get('.asset-private-preview', {\n  timeout: 20000\n}).should('be.visible').and('contain', 'Private Asset');",
+              "err": {},
+              "uuid": "6b88e12e-51d6-4dbc-9bb0-b65c767ed1ba",
+              "parentUUID": "76d53872-9072-4581-ab7c-ad252d84e9ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "US01 # | TC07: Check that the user can replace an asset of the same extension",
+              "fullTitle": "US01 | StoryBlok | Asset Feature Tests US01 # | TC07: Check that the user can replace an asset of the same extension",
+              "timedOut": null,
+              "duration": 20781,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "currentAssetName = `picture-${Date.now()}`;\n//'Precon: Create a public asset'\n_StoryBlokAsset.asset.uploadFile('background.jpg');\n_StoryBlokAsset.asset.typeAssetName(currentAssetName);\n_StoryBlokAsset.asset.clickUploadAsset();\ncy.get('.assets-list-item-preview__image > img', {\n  timeout: 20000\n}).should('have.attr', 'src').and('include', currentAssetName);\n// Interact with the previously created asset for replacement\n_StoryBlokAsset.asset.clickAsset(currentAssetName);\n// Capture the current src attribute to verify change post-replacement\n_StoryBlokAsset.asset.get.img().invoke('attr', 'src').then(src => {\n  const originalSrc = src;\n  // Replace the current asset with a new file\n  _StoryBlokAsset.asset.replaceFile('girl.jpg');\n  // Close the asset details modal post-replacement\n  _StoryBlokAsset.asset.closeAssetDetailsModal();\n  // Verify the asset's src attribute has updated, confirming replacement\n  _StoryBlokAsset.asset.get.img().invoke('attr', 'src').should('not.eq', originalSrc);\n});",
+              "err": {},
+              "uuid": "0f8c76ba-9160-4184-b1ad-01d0963c1821",
+              "parentUUID": "76d53872-9072-4581-ab7c-ad252d84e9ac",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fc34d55a-33de-4666-aa80-aa88f116bee3",
+            "6b88e12e-51d6-4dbc-9bb0-b65c767ed1ba",
+            "0f8c76ba-9160-4184-b1ad-01d0963c1821"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 54913,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

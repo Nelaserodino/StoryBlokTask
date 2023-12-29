@@ -1,0 +1,22 @@
+{
+  "name": "storyblok-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "mocha": "cypress run --reporter mochawesome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.1",
+    "mochawesome": "^7.1.3",
+    "prettier": "3.1.1"
+  },
+  "dependencies": {
+    "cypress-file-upload": "^5.0.8",
+    "dotenv": "^16.3.1"
+  }
+}
